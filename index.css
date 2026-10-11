@@ -9,10 +9,9 @@
 
 body {
   background-color: #f0ede9;
-  font-family: "Courier New", monospace;
   margin: 25px;
-  padding: 25px;
-  padding-bottom: 15px;
+  padding: 35px;
+  padding-bottom: 35px;
 }
 
 header {
@@ -35,11 +34,6 @@ nav {
   background-color: #19191a;
   padding: 50px;
   margin: 20px auto;
-}
-
-h2 {
-  text-align: center;
-  font-family: "Courier New", cursive;
 }
 
 #signText {
@@ -86,4 +80,10 @@ nav .nav-link:hover {
 nav .nav-link.active {
   color: #19191a;
   background-color: #f0ede9;
+}
+.uniform-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  padding-bottom: 50px;
 }
