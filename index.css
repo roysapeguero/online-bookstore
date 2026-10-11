@@ -5,7 +5,6 @@
     margin: 0px;
     padding: 0px;
     font-family: "Courier New", monospace;
-
 }
 
 body {
@@ -30,7 +29,6 @@ nav {
     background-color: #19191a;
     padding: 25px;
     text-decoration: none;
-
 }
 
 #signupSection {
@@ -59,7 +57,6 @@ button {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-
 }
 
 form {
