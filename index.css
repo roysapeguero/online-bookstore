@@ -1,1 +1,80 @@
+* {
+    background-color: #19191a;
+    color: #f0ede9;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Courier New", monospace;
 
+}
+
+body {
+    background-color: #f0ede9;
+    font-family: "Courier New", monospace;
+    margin: 25px;
+    padding: 25px;
+    padding-bottom: 15px;
+}
+
+header {
+    background-image: url("main-photo.avif");
+    padding: 1rem;
+    text-align: center;
+    padding: 25px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #19191a;
+    padding: 25px;
+    text-decoration: none;
+
+}
+
+#signupSection {
+    background-color: #19191a;
+    padding: 50px;
+    margin: 20px auto;
+}
+
+h2 {
+    
+    text-align: center;
+    font-family: "Courier New", cursive;
+}
+
+#signText {
+
+    text-align: center;
+    font-family: "Courier New", cursive;
+}
+
+button {
+    background-color: #dad6d2;
+    color: #19191a;
+    border: none;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+footer {
+    background-color: #19191a;
+    color: #cccac7;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
