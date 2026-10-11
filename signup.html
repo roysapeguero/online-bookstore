@@ -38,14 +38,13 @@
       </ul>
     </nav>
   </header>
-  </header>
   <main>
     <section id="signupSection" class="container justify-content-center my-4" style="max-width: 600px;">
       <h2>Create an Account</h2>
       <p id="signText">Become a member of The Book Nook</p>
 
 
-      <form class="container my-4" style="max-width: 600px;">
+      <form id="signupForm" class="container my-4" style="max-width: 600px;">
         <div class="mb-3">
           <label for="fullName" class="form-label">Full Name</label>
           <input type="text" class="form-control" id="fullName" name="fullName" required />
@@ -68,10 +67,11 @@
 
         <div class="mb-3">
           <label for="phone" class="form-label">Phone:</label>
-          <input type="tel" class="form-control" id="phone" name="phone" required />
+          <input type="tel" class="form-control" id="phone" name="phone" />
         </div>
 
         <button type="submit">Sign Up</button>
+        <div id="formMessage"></div>
       </form>
     </section>
     <footer>
