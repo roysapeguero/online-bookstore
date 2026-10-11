@@ -1,57 +1,80 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Book Nook | Online Bookstore</title>
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <h1>The Book Nook</h1>
 
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li>Books</li>
-          <li><a href="signup.html">Sign Up</a></li>
-          <li>Cart</li>
-        </ul>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
 
-    <main>
-      <section>
-        <img src="images/main-photo.avif" alt="Cozy bookstore" />
-        <h2>Your Next Chapter Starts Here</h2>
-        <p>Welcome to The Book Nook!</p>
-      </section>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-      <!-- <section>
-        <h2>Explore Our Shelves</h2>
+  <title>The Book Nook | Online Bookstore</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="index.css" />
 
-        <div>
-          <div>
-            <img src="images/fantasy.jpeg" alt="Magical forrest" />
-            <h3>Fantasy</h3>
-          </div>
-          <div>
-            <img
-              src="images/romance.jpeg"
-              alt="Foggy glass with I love you in a heart"
-            />
-            <h3>Romance</h3>
-          </div>
-          <div>
-            <img src="images/mystery.jpeg" alt="Mysterious person" />
-            <h3>Mystery</h3>
-          </div>
+</head>
+
+<body alt="main">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <header>
+    <nav>
+      <h1>The Book Nook</h1>
+
+      <ul class="nav nav-tabs justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="books.html">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signup.html">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.html">Cart</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section alt="cozy">
+
+      <div class="d-flex align-items-center flex-column py-5">
+        <img src="images/main-photo.avif" class="img-fluid " alt="Cozy bookstore" id="mainPhoto">
+      </div>
+      <h2 class="text-center py-4">Your Next Chapter Starts Here</h2>
+      <p class="text-center py-4">Welcome to The Book Nook!</p>
+    </section>
+
+    <section class="container py-5">
+      <h2 class="text-center mb-5">Explore Our Shelves</h2>
+
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <img src="images/fantasy.jpeg" class="img-fluid uniform-img" alt="Magical forest">
+          <h3 class="text-center mb-5">Fantasy</h3>
         </div>
-      </section> -->
-    </main>
 
-    <footer>
-      <h3>The Book Nook</h3>
-    </footer>
-  </body>
+        <div class="col-12 col-md-4">
+          <img src="images/romance.jpeg" class="img-fluid uniform-img" alt="Foggy heart">
+          <h3 class="text-center mb-5">Romance</h3>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <img src="images/mystery.jpeg" class="img-fluid uniform-img" alt="Mysterious person">
+          <h3 class="text-center">Mystery</h3>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <footer>
+    <h3 alt="nook">The Book Nook</h3>
+    <p>IST 256 Group Project</p>
+    <p>Created by: Jenna Eberly, Roysa Yvel Peguero Martinez, and Anas Mohamed Abdelgadir</p>
+  </footer>
+</body>
+
 </html>
