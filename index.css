@@ -11,7 +11,7 @@ body {
   background-color: #f0ede9;
   margin: 25px;
   padding: 35px;
-  padding-bottom: 35px;
+  padding-bottom: 70px;
 }
 
 header {
@@ -68,7 +68,8 @@ footer {
   width: 100%;
 }
 
-nav .nav-link {
+nav .nav-link,
+nav .nav-link:visited {
   color: #f0ede9;
   text-decoration: none;
 }
@@ -81,9 +82,14 @@ nav .nav-link.active {
   color: #19191a;
   background-color: #f0ede9;
 }
+
 .uniform-img {
   width: 100%;
   height: 250px;
   object-fit: cover;
+  padding-bottom: 50px;
+}
+
+#memberSection {
   padding-bottom: 50px;
 }
