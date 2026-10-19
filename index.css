@@ -11,7 +11,8 @@ body {
   background-color: #f0ede9;
   margin: 25px;
   padding: 35px;
-  padding-bottom: 70px;
+  padding-bottom: 35px;
+
 }
 
 header {
@@ -41,6 +42,7 @@ nav {
   font-family: "Courier New", cursive;
 }
 
+
 button {
   background-color: #dad6d2;
   color: #19191a;
@@ -68,8 +70,7 @@ footer {
   width: 100%;
 }
 
-nav .nav-link,
-nav .nav-link:visited {
+nav .nav-link {
   color: #f0ede9;
   text-decoration: none;
 }
@@ -89,7 +90,15 @@ nav .nav-link.active {
   object-fit: cover;
   padding-bottom: 50px;
 }
-
 #memberSection {
   padding-bottom: 50px;
+}
+
+.btn-custom {
+  background-color: #dad6d2;
+  color: #19191a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
