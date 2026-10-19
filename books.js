@@ -179,10 +179,17 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+const searchInput = document.querySelector("#bookSearch");
+
+if (window.jQuery) {
   $("#bookSearch").on("input", function () {
     displayBooks($(this).val());
   });
-
+} else {
+  searchInput.addEventListener("input", function () {
+    displayBooks(searchInput.value);
+  });
+}
   downloadButton.addEventListener("click", function () {
     const jsonData = JSON.stringify(books, null, 2);
     const file = new Blob([jsonData], {
