@@ -172,8 +172,76 @@
     if (totalElement) totalElement.textContent = money(subtotal);
   }
 
+  function searchBooks(searchText) {
+    const savedBooks = JSON.parse(
+      localStorage.getItem("bookNookBooks") || "[]",
+    );
+
+    const searchValue = searchText.toLowerCase().trim();
+
+    return savedBooks.filter(function (book) {
+      return (
+        book.title.toLowerCase().includes(searchValue) ||
+        (book.author || "").toLowerCase().includes(searchValue) ||
+        book.category.toLowerCase().includes(searchValue)
+      );
+    });
+  }
+
+  function displaySearchResults(books) {
+    const resultsContainer = document.getElementById("searchResults");
+
+    resultsContainer.replaceChildren();
+
+    if (books.length === 0) {
+      resultsContainer.textContent = "No books found.";
+      return;
+    }
+
+    books.forEach(function (book) {
+      const card = document.createElement("div");
+      card.className = "col-md-6";
+
+      const content = document.createElement("div");
+      content.className = "card bg-dark text-light border-secondary p-3 h-100";
+
+      const title = document.createElement("h3");
+      title.className = "h5";
+      title.textContent = book.title;
+
+      const description = document.createElement("p");
+      description.textContent = book.author || "Unknown author";
+
+      const price = document.createElement("p");
+      price.textContent = "$" + Number(book.price).toFixed(2);
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "btn btn-light";
+      button.textContent = "Add to Cart";
+
+      button.addEventListener("click", function () {
+        addToCart(book);
+      });
+
+      content.append(title, description, price, button);
+      card.appendChild(content);
+      resultsContainer.appendChild(card);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     cart = readCart();
+
+    const searchForm = document.getElementById("bookSearchForm");
+    const searchInput = document.getElementById("bookSearchInput");
+
+    searchForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const results = searchBooks(searchInput.value);
+      displaySearchResults(results);
+    });
 
     const container = document.getElementById("cartItems");
 
