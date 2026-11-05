@@ -6,47 +6,72 @@
 
   function readCart() {
     try {
-      const saved = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
-      return Array.isArray(saved)
-        ? saved
-            .filter(
-              (item) =>
-                item &&
-                item.id != null &&
-                typeof item.title === "string" &&
-                Number.isFinite(Number(item.price)) &&
-                Number(item.price) >= 0 &&
-                Number.isInteger(Number(item.quantity)) &&
-                Number(item.quantity) > 0,
-            )
-            .map((item) => ({
-              id: String(item.id),
-              title: item.title,
-              price: Number(item.price),
-              quantity: Number(item.quantity),
-            }))
-        : [];
+      const savedCart = JSON.parse(
+        localStorage.getItem(CART_KEY) || "[]"
+      );
+
+      if (!Array.isArray(savedCart)) {
+        return [];
+      }
+
+      return savedCart.map(function (item) {
+        return {
+          id: String(item.id),
+          title: String(item.title),
+          description: item.description || item.title,
+          category: item.category || "Book",
+          unitOfMeasure:
+            item.unitOfMeasure || item.format || "Book",
+          price: Number(item.price),
+          quantity: Number(item.quantity) || 1
+        };
+      });
     } catch (error) {
       return [];
     }
   }
 
+  function createJsonDocument() {
+    return cart.map(function (item) {
+      return {
+        productId: item.id,
+        description: item.description,
+        category: item.category,
+        unitOfMeasure: item.unitOfMeasure,
+        price: item.price,
+        quantity: item.quantity
+      };
+    });
+  }
+
+  function updateJsonOutput() {
+    const productDocument = createJsonDocument();
+
+    $("#jsonOutput").text(
+      JSON.stringify(productDocument, null, 2)
+    );
+  }
+
   function saveCart() {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     renderCart();
+    updateJsonOutput();
   }
 
   function money(amount) {
-    return "$" + amount.toFixed(2);
+    return "$" + Number(amount).toFixed(2);
   }
 
-  function showMessage(text, isError = false) {
-    const message = document.getElementById("cartMessage");
-    if (!message) return;
-    message.textContent = text;
-    message.className = isError
-      ? "alert alert-danger mt-3"
-      : "alert alert-success mt-3";
+  function showMessage(text, isError) {
+    const message = $("#cartMessage");
+
+    message.text(text);
+
+    if (isError) {
+      message.attr("class", "alert alert-danger mt-3");
+    } else {
+      message.attr("class", "alert alert-success mt-3");
+    }
   }
 
   function addToCart(book) {
@@ -54,75 +79,104 @@
       !book ||
       book.id == null ||
       !String(book.title || "").trim() ||
+      !String(book.description || "").trim() ||
+      !String(book.category || "").trim() ||
+      !String(book.format || "").trim() ||
       !Number.isFinite(Number(book.price)) ||
-      Number(book.price) < 0 ||
-      book.price === ""
+      Number(book.price) < 0
     ) {
-      showMessage("This book has invalid product information.", true);
+      showMessage(
+        "This book has incomplete or invalid product information.",
+        true
+      );
+
       return false;
     }
 
     const id = String(book.id);
-    const existing = cart.find((item) => item.id === id);
 
-    if (existing) {
-      existing.quantity += 1;
+    const existingBook = cart.find(function (item) {
+      return item.id === id;
+    });
+
+    if (existingBook) {
+      existingBook.quantity += 1;
     } else {
       cart.push({
-        id,
+        id: id,
         title: String(book.title),
+        description: String(book.description),
+        category: String(book.category),
+        unitOfMeasure: String(book.format),
         price: Number(book.price),
-        quantity: 1,
+        quantity: 1
       });
     }
 
     saveCart();
-    showMessage(book.title + " added to your cart!");
+    showMessage(book.title + " was added to your cart.", false);
+
     return true;
   }
 
   function changeQuantity(id, amount) {
-    const item = cart.find((book) => book.id === id);
-    if (!item) return;
+    const item = cart.find(function (book) {
+      return book.id === id;
+    });
 
-    const next = item.quantity + amount;
-
-    if (next < 1) {
-      showMessage(
-        "Quantity cannot be less than one. Use Remove to delete a book.",
-        true,
-      );
+    if (!item) {
       return;
     }
 
-    item.quantity = next;
+    const newQuantity = item.quantity + amount;
+
+    if (newQuantity < 1) {
+      showMessage(
+        "Quantity cannot be less than one. Use Remove to delete the book.",
+        true
+      );
+
+      return;
+    }
+
+    item.quantity = newQuantity;
     saveCart();
+
+    showMessage("Book quantity was updated.", false);
   }
 
   function removeFromCart(id) {
-    cart = cart.filter((book) => book.id !== id);
+    cart = cart.filter(function (book) {
+      return book.id !== id;
+    });
+
     saveCart();
-    showMessage("Book removed from your cart.");
+    showMessage("Book removed from your cart.", false);
   }
 
   function renderCart() {
     const container = document.getElementById("cartItems");
-    const subtotalElement = document.getElementById("cartSubtotal");
+    const subtotalElement =
+      document.getElementById("cartSubtotal");
     const totalElement = document.getElementById("cartTotal");
 
-    if (!container) return;
+    if (!container) {
+      return;
+    }
 
     container.replaceChildren();
 
     if (cart.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "alert alert-info";
-      empty.textContent =
+      const emptyMessage = document.createElement("p");
+
+      emptyMessage.className = "alert alert-info";
+      emptyMessage.textContent =
         "Your shopping cart is empty. Search for a book to get started!";
-      container.appendChild(empty);
+
+      container.appendChild(emptyMessage);
     }
 
-    cart.forEach((book) => {
+    cart.forEach(function (book) {
       const item = document.createElement("div");
       item.className = "card mb-3 p-3";
 
@@ -130,139 +184,253 @@
       title.className = "h5";
       title.textContent = book.title;
 
+      const details = document.createElement("p");
+      details.textContent =
+        book.category + " | " + book.unitOfMeasure;
+
       const price = document.createElement("p");
       price.textContent =
         money(book.price) +
-        " each · Item total: " +
+        " each | Item total: " +
         money(book.price * book.quantity);
 
       const controls = document.createElement("div");
-      controls.className = "d-flex align-items-center gap-2 flex-wrap";
+      controls.className =
+        "d-flex align-items-center gap-2 flex-wrap";
 
-      function makeButton(label, action, className) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = label;
-        button.className = className;
-        button.dataset.action = action;
-        button.dataset.id = book.id;
-        return button;
-      }
+      const decreaseButton = document.createElement("button");
+      decreaseButton.type = "button";
+      decreaseButton.textContent = "Decrease";
+      decreaseButton.className =
+        "btn btn-outline-secondary btn-sm";
+      decreaseButton.dataset.action = "decrease";
+      decreaseButton.dataset.id = book.id;
 
       const quantity = document.createElement("span");
       quantity.textContent = "Quantity: " + book.quantity;
 
+      const increaseButton = document.createElement("button");
+      increaseButton.type = "button";
+      increaseButton.textContent = "Increase";
+      increaseButton.className =
+        "btn btn-outline-secondary btn-sm";
+      increaseButton.dataset.action = "increase";
+      increaseButton.dataset.id = book.id;
+
+      const removeButton = document.createElement("button");
+      removeButton.type = "button";
+      removeButton.textContent = "Remove";
+      removeButton.className = "btn btn-danger btn-sm";
+      removeButton.dataset.action = "remove";
+      removeButton.dataset.id = book.id;
+
       controls.append(
-        makeButton("−", "decrease", "btn btn-outline-secondary btn-sm"),
+        decreaseButton,
         quantity,
-        makeButton("+", "increase", "btn btn-outline-secondary btn-sm"),
-        makeButton("Remove", "remove", "btn btn-danger btn-sm"),
+        increaseButton,
+        removeButton
       );
 
-      item.append(title, price, controls);
+      item.append(title, details, price, controls);
       container.appendChild(item);
     });
 
-    const subtotal = cart.reduce(
-      (sum, book) => sum + book.price * book.quantity,
-      0,
-    );
+    const subtotal = cart.reduce(function (total, book) {
+      return total + book.price * book.quantity;
+    }, 0);
 
-    if (subtotalElement) subtotalElement.textContent = money(subtotal);
-    if (totalElement) totalElement.textContent = money(subtotal);
+    if (subtotalElement) {
+      subtotalElement.textContent = money(subtotal);
+    }
+
+    if (totalElement) {
+      totalElement.textContent = money(subtotal);
+    }
   }
 
   function searchBooks(searchText) {
-    const savedBooks = JSON.parse(
-      localStorage.getItem("bookNookBooks") || "[]",
-    );
+    let savedBooks = [];
+
+    try {
+      savedBooks = JSON.parse(
+        localStorage.getItem("bookNookBooks") || "[]"
+      );
+    } catch (error) {
+      savedBooks = [];
+    }
 
     const searchValue = searchText.toLowerCase().trim();
 
-    return savedBooks.filter(function (book) {
+    return $.grep(savedBooks, function (book) {
+      const title = String(book.title || "").toLowerCase();
+      const author = String(book.author || "").toLowerCase();
+      const category = String(
+        book.category || ""
+      ).toLowerCase();
+
       return (
-        book.title.toLowerCase().includes(searchValue) ||
-        (book.author || "").toLowerCase().includes(searchValue) ||
-        book.category.toLowerCase().includes(searchValue)
+        title.includes(searchValue) ||
+        author.includes(searchValue) ||
+        category.includes(searchValue)
       );
     });
   }
 
   function displaySearchResults(books) {
-    const resultsContainer = document.getElementById("searchResults");
+    const resultsContainer = $("#searchResults");
+    const searchMessage = $("#searchMessage");
 
-    resultsContainer.replaceChildren();
+    resultsContainer.empty();
 
     if (books.length === 0) {
-      resultsContainer.textContent = "No books found.";
+      searchMessage
+        .text("No books matched your search.")
+        .attr("class", "alert alert-danger mt-3");
+
       return;
     }
 
-    books.forEach(function (book) {
-      const card = document.createElement("div");
-      card.className = "col-md-6";
+    searchMessage
+      .text(books.length + " book result(s) found.")
+      .attr("class", "alert alert-success mt-3");
 
-      const content = document.createElement("div");
-      content.className = "card bg-dark text-light border-secondary p-3 h-100";
+    $.each(books, function (index, book) {
+      const card = $("<div>").addClass("col-md-6");
 
-      const title = document.createElement("h3");
-      title.className = "h5";
-      title.textContent = book.title;
+      const content = $("<div>").addClass(
+        "card bg-dark text-light border-secondary p-3 h-100"
+      );
 
-      const description = document.createElement("p");
-      description.textContent = book.author || "Unknown author";
+      const title = $("<h3>")
+        .addClass("h5")
+        .text(book.title);
 
-      const price = document.createElement("p");
-      price.textContent = "$" + Number(book.price).toFixed(2);
+      const author = $("<p>").text(
+        book.author || "Unknown author"
+      );
 
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "btn btn-light";
-      button.textContent = "Add to Cart";
+      const category = $("<p>").text(
+        "Category: " + book.category
+      );
 
-      button.addEventListener("click", function () {
+      const price = $("<p>").text(
+        "$" + Number(book.price).toFixed(2)
+      );
+
+      const button = $("<button>")
+        .attr("type", "button")
+        .addClass("btn btn-light")
+        .text("Add to Cart");
+
+      button.on("click", function () {
         addToCart(book);
       });
 
-      content.append(title, description, price, button);
-      card.appendChild(content);
-      resultsContainer.appendChild(card);
+      content.append(
+        title,
+        author,
+        category,
+        price,
+        button
+      );
+
+      card.append(content);
+      resultsContainer.append(card);
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function sendCartToApi() {
+    const apiMessage = $("#apiMessage");
+
+    if (cart.length === 0) {
+      apiMessage
+        .text("Add at least one book before preparing the order.")
+        .attr("class", "alert alert-danger mt-3");
+
+      return;
+    }
+
+    const productDocument = createJsonDocument();
+    const jsonData = JSON.stringify(productDocument);
+
+    updateJsonOutput();
+
+    $.ajax({
+      url: "/api/cart",
+      type: "POST",
+      contentType: "application/json",
+      data: jsonData,
+
+      success: function () {
+        apiMessage
+          .text("Shopping cart data was sent successfully.")
+          .attr("class", "alert alert-success mt-3");
+      },
+
+      error: function () {
+        apiMessage
+          .text(
+            "JSON order data is prepared. The RESTful API will be connected in a future assignment."
+          )
+          .attr("class", "alert alert-success mt-3");
+      }
+    });
+  }
+
+  $(function () {
     cart = readCart();
 
-    const searchForm = document.getElementById("bookSearchForm");
-    const searchInput = document.getElementById("bookSearchInput");
-
-    searchForm.addEventListener("submit", function (event) {
+    $("#bookSearchForm").on("submit", function (event) {
       event.preventDefault();
 
-      const results = searchBooks(searchInput.value);
+      const searchText = $("#bookSearchInput").val().trim();
+
+      if (searchText === "") {
+        $("#searchMessage")
+          .text("Enter a title, author, or category.")
+          .attr("class", "alert alert-danger mt-3");
+
+        return;
+      }
+
+      const results = searchBooks(searchText);
       displaySearchResults(results);
     });
 
-    const container = document.getElementById("cartItems");
+    $("#cartItems").on(
+      "click",
+      "button[data-action]",
+      function () {
+        const id = String($(this).data("id"));
+        const action = $(this).data("action");
 
-    if (container) {
-      container.addEventListener("click", function (event) {
-        const button = event.target.closest("button[data-action]");
-        if (!button || !container.contains(button)) return;
+        if (action === "increase") {
+          changeQuantity(id, 1);
+        }
 
-        const id = button.dataset.id;
+        if (action === "decrease") {
+          changeQuantity(id, -1);
+        }
 
-        if (button.dataset.action === "increase") changeQuantity(id, 1);
-        if (button.dataset.action === "decrease") changeQuantity(id, -1);
-        if (button.dataset.action === "remove") removeFromCart(id);
-      });
-    }
+        if (action === "remove") {
+          removeFromCart(id);
+        }
+      }
+    );
+
+    $("#sendCartButton").on("click", sendCartToApi);
 
     renderCart();
+    updateJsonOutput();
   });
 
   window.BookNookCart = {
-    addToCart,
-    getCart: () => cart.map((item) => ({ ...item })),
+    addToCart: addToCart,
+
+    getCart: function () {
+      return cart.map(function (item) {
+        return Object.assign({}, item);
+      });
+    }
   };
 })();
