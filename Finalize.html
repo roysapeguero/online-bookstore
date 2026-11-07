@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+  <title>The Book Nook | Online Bookstore</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body alt="main">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <header>
+    <nav>
+      <h1>The Book Nook</h1>
+
+      <ul class="nav nav-tabs justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="books.html">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signup.html">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.html">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="finalize.html">Finalize Order</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container-fluid py-5">
+
+    <!-- Page Heading -->
+    <section class="text-center mb-5">
+      <h2>Finalize Your Order</h2>
+      <p>Nearly there! Please provide your information below.</p>
+    </section>
+
+    <div class="container">
+
+      <!-- Order Summary -->
+      <section class="mb-5">
+        <h3>Order Summary</h3>
+
+        <div id="orderSummary" class="p-4 rounded">
+          <p>Your books will appear here.</p>
+
+          <!-- JavaScript spot? -->
+
+          <hr />
+
+          <h5 id="orderTotal">Order Total: $</h5>
+        </div>
+      </section>
+
+      <!-- Finalization Form -->
+      <section>
+        <h3 class="mb-4">Customer Information</h3>
+
+        <form id="finalizeForm" novalidate>
+
+          <!-- Name -->
+          <div class="row mb-3">
+
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">
+                First Name
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                placeholder="Enter first name"
+                required
+              />
+
+              <div class="invalid-feedback">
+                Please enter your first name.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">
+                Last Name
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                name="lastName"
+                placeholder="Enter last name"
+                required
+              />
+
+              <div class="invalid-feedback">
+                Please enter your last name.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="example@email.com"
+              required
+            />
+
+            <div class="invalid-feedback">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <!-- Shipping Address -->
+          <h4 class="mt-5 mb-3">Shipping Information</h4>
+
+          <div class="mb-3">
+            <label for="address" class="form-label">
+              Street Address
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              placeholder="Enter your street address"
+              required
+            />
+
+            <div class="invalid-feedback">
+              Please enter your shipping address.
+            </div>
+          </div>
+
+          <div class="row mb-3">
+
+            <div class="col-md-5">
+              <label for="city" class="form-label">City</label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                name="city"
+                required
+              />
+
+              <div class="invalid-feedback">
+                Please enter your city.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="state" class="form-label">State</label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="state"
+                name="state"
+                required
+              />
+
+              <div class="invalid-feedback">
+                Please enter your state.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="zip" class="form-label">ZIP Code</label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="zip"
+                name="zip"
+                pattern="[0-9]{5}"
+                maxlength="5"
+                required
+              />
+
+              <div class="invalid-feedback">
+                Please enter a valid 5-digit ZIP code.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Order Preferences -->
+          <h4 class="mt-5 mb-3">Order Preferences</h4>
+
+          <div class="mb-3">
+            <label for="delivery" class="form-label">
+              Delivery Method
+            </label>
+
+            <select
+              class="form-select"
+              id="delivery"
+              name="delivery"
+              required
+            >
+              <option value="">Choose a delivery method</option>
+              <option value="Standard Shipping">Standard Shipping</option>
+              <option value="Express Shipping">Express Shipping</option>
+              <option value="Store Pickup">Store Pickup</option>
+            </select>
+
+            <div class="invalid-feedback">
+              Please select a delivery method.
+            </div>
+          </div>
+
+          <!-- Payment Preference -->
+          <div class="mb-3">
+
+            <label class="form-label">Payment Preference</label>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="payment"
+                id="creditCard"
+                value="Credit Card"
+                required
+              />
+
+              <label class="form-check-label" for="creditCard">
+                Credit Card
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="payment"
+                id="paypal"
+                value="PayPal"
+              />
+
+              <label class="form-check-label" for="paypal">
+                PayPal
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="payment"
+                id="giftCard"
+                value="Gift Card"
+              />
+
+              <label class="form-check-label" for="giftCard">
+                Gift Card
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Additional Stuff -->
+          <div class="mb-4">
+            <label for="notes" class="form-label">
+              Additional Order Instructions (Optional)
+            </label>
+
+            <textarea
+              class="form-control"
+              id="notes"
+              name="notes"
+              rows="4"
+              placeholder="Enter any additional instructions..."
+            ></textarea>
+          </div>
+
+          <!-- Terms -->
+          <div class="form-check mb-4">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="confirm"
+              name="confirm"
+              required
+            />
+
+            <label class="form-check-label" for="confirm">
+              I confirm that my order information is correct.
+            </label>
+
+            <div class="invalid-feedback">
+              Please confirm your order information.
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="text-center">
+  <button type="submit" class="btn btn-custom">
+    Confirm Order
+  </button>
+
+  <a href="cart.html" class="btn btn-custom">
+    Return to Cart
+  </a>
+</div>
+
+</form>
+
+<!-- Submission Message (Add java pop up?) -->
+<div id="formMessage" class="mt-4 text-center" style="display: none;">
+  Purchase Complete!
+</div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <h3>The Book Nook</h3>
+    <p>IST 256 Group Project</p>
+    <p>
+      Created by: Jenna Eberly, Roysa Peguero Martinez,
+      and Anas Mohamed Abdelgadir
+    </p>
+  </footer>
+
+  <!-- Bootstrap JavaScript -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous">
+  </script>
+
+</body>
+</html>
