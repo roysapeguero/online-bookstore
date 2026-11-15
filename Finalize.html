@@ -35,8 +35,12 @@
           <a class="nav-link" href="cart.html">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="finalize.html">Finalize Order</a>
+          <a class="nav-link active" href="finalize.html">Billing</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="returns.html">Returns</a>
+        </li>
+
       </ul>
     </nav>
   </header>
@@ -80,14 +84,8 @@
                 First Name
               </label>
 
-              <input
-                type="text"
-                class="form-control"
-                id="firstName"
-                name="firstName"
-                placeholder="Enter first name"
-                required
-              />
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name"
+                required />
 
               <div class="invalid-feedback">
                 Please enter your first name.
@@ -99,14 +97,8 @@
                 Last Name
               </label>
 
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                name="lastName"
-                placeholder="Enter last name"
-                required
-              />
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name"
+                required />
 
               <div class="invalid-feedback">
                 Please enter your last name.
@@ -121,14 +113,7 @@
               Email Address
             </label>
 
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="email"
-              placeholder="example@email.com"
-              required
-            />
+            <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com" required />
 
             <div class="invalid-feedback">
               Please enter a valid email address.
@@ -143,14 +128,8 @@
               Street Address
             </label>
 
-            <input
-              type="text"
-              class="form-control"
-              id="address"
-              name="address"
-              placeholder="Enter your street address"
-              required
-            />
+            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your street address"
+              required />
 
             <div class="invalid-feedback">
               Please enter your shipping address.
@@ -162,13 +141,7 @@
             <div class="col-md-5">
               <label for="city" class="form-label">City</label>
 
-              <input
-                type="text"
-                class="form-control"
-                id="city"
-                name="city"
-                required
-              />
+              <input type="text" class="form-control" id="city" name="city" required />
 
               <div class="invalid-feedback">
                 Please enter your city.
@@ -178,13 +151,7 @@
             <div class="col-md-3">
               <label for="state" class="form-label">State</label>
 
-              <input
-                type="text"
-                class="form-control"
-                id="state"
-                name="state"
-                required
-              />
+              <input type="text" class="form-control" id="state" name="state" required />
 
               <div class="invalid-feedback">
                 Please enter your state.
@@ -194,15 +161,7 @@
             <div class="col-md-4">
               <label for="zip" class="form-label">ZIP Code</label>
 
-              <input
-                type="text"
-                class="form-control"
-                id="zip"
-                name="zip"
-                pattern="[0-9]{5}"
-                maxlength="5"
-                required
-              />
+              <input type="text" class="form-control" id="zip" name="zip" pattern="[0-9]{5}" maxlength="5" required />
 
               <div class="invalid-feedback">
                 Please enter a valid 5-digit ZIP code.
@@ -219,12 +178,7 @@
               Delivery Method
             </label>
 
-            <select
-              class="form-select"
-              id="delivery"
-              name="delivery"
-              required
-            >
+            <select class="form-select" id="delivery" name="delivery" required>
               <option value="">Choose a delivery method</option>
               <option value="Standard Shipping">Standard Shipping</option>
               <option value="Express Shipping">Express Shipping</option>
@@ -239,104 +193,94 @@
           <!-- Payment Preference -->
           <div class="mb-3">
 
-            <label class="form-label">Payment Preference</label>
-
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="payment"
-                id="creditCard"
-                value="Credit Card"
-                required
-              />
-
-              <label class="form-check-label" for="creditCard">
-                Credit Card
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="payment"
-                id="paypal"
-                value="PayPal"
-              />
-
-              <label class="form-check-label" for="paypal">
-                PayPal
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="payment"
-                id="giftCard"
-                value="Gift Card"
-              />
-
-              <label class="form-check-label" for="giftCard">
-                Gift Card
-              </label>
-            </div>
-
-          </div>
-
-          <!-- Additional Stuff -->
-          <div class="mb-4">
-            <label for="notes" class="form-label">
-              Additional Order Instructions (Optional)
+            <label for="payment" class="form-label">
+              Payment Method
             </label>
 
-            <textarea
-              class="form-control"
-              id="notes"
-              name="notes"
-              rows="4"
-              placeholder="Enter any additional instructions..."
-            ></textarea>
-          </div>
-
-          <!-- Terms -->
-          <div class="form-check mb-4">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="confirm"
-              name="confirm"
-              required
-            />
-
-            <label class="form-check-label" for="confirm">
-              I confirm that my order information is correct.
-            </label>
+            <select class="form-select" id="payment" name="payment" required>
+              <option value="">Choose a payment method</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Debit Card">Debit Card</option>
+              <option value="Gift Card">Gift Card</option>
+            </select>
 
             <div class="invalid-feedback">
-              Please confirm your order information.
+              Please select a payment method.
             </div>
-          </div>
 
-          <!-- Submit -->
-          <div class="text-center">
-  <button type="submit" class="btn btn-custom">
-    Confirm Order
-  </button>
+            <!-- Credit Card Information -->
+            <div class="mb-3">
 
-  <a href="cart.html" class="btn btn-custom">
-    Return to Cart
-  </a>
-</div>
+              <!-- Credit Card Number -->
+              <div class="mb-3">
+                <label for="cardNumber" class="form-label mt-3">
+                  Card Number
+                </label>
+                <input type="text" class="form-control" id="cardNumber" name="cardNumber"
+                  placeholder="1234 5678 9012 3456" inputmode="numeric" maxlength="19" autocomplete="cc-number"
+                  required />
+              </div>
 
-</form>
+              <div class="row">
+                <!-- Expiration Date -->
+                <div class="col-md-6 mb-3">
+                  <label for="expirationDate" class="form-label">
+                    Expiration Date
+                  </label>
+                  <input type="text" class="form-control" id="expirationDate" name="expirationDate" placeholder="MM/YY"
+                    maxlength="5" autocomplete="cc-exp" required />
+                </div>
 
-<!-- Submission Message (Add java pop up?) -->
-<div id="formMessage" class="mt-4 text-center" style="display: none;">
-  Purchase Complete!
-</div>
+                <!-- Security Code -->
+                <div class="col-md-6 mb-3">
+                  <label for="securityCode" class="form-label">
+                    Security Code (CVV)
+                  </label>
+                  <input type="password" class="form-control" id="securityCode" name="securityCode" placeholder="123"
+                    inputmode="numeric" maxlength="4" autocomplete="cc-csc" required />
+                </div>
+              </div>
+
+              <!-- Additional Stuff -->
+              <div class="mb-4">
+                <label for="notes" class="form-label">
+                  Additional Order Instructions (Optional)
+                </label>
+
+                <textarea class="form-control" id="notes" name="notes" rows="4"
+                  placeholder="Enter any additional instructions..."></textarea>
+              </div>
+
+              <!-- Terms -->
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="confirm" name="confirm" required />
+
+                <label class="form-check-label" for="confirm">
+                  I confirm that my order information is correct.
+                </label>
+
+                <div class="invalid-feedback">
+                  Please confirm your order information.
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="text-center">
+                <button type="submit" class="btn btn-custom">
+                  Confirm Order
+                </button>
+
+                <a href="cart.html" class="btn btn-custom">
+                  Return to Cart
+                </a>
+              </div>
+
+        </form>
+
+        <!-- Submission Message (Add java pop up?) -->
+        <div id="formMessage" class="mt-4 text-center" style="display: none;">
+          Purchase Complete!
+        </div>
 
       </section>
 
@@ -346,20 +290,14 @@
 
   <!-- Footer -->
   <footer>
-    <h3>The Book Nook</h3>
+    <h3 alt="nook">The Book Nook</h3>
     <p>IST 256 Group Project</p>
     <p>
-      Created by: Jenna Eberly, Roysa Peguero Martinez,
-      and Anas Mohamed Abdelgadir
+      Created by: Jenna Eberly, Roysa Peguero Martinez, and Anas Mohamed
+      Abdelgadir
     </p>
   </footer>
 
-  <!-- Bootstrap JavaScript -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous">
-  </script>
-
 </body>
+
 </html>
