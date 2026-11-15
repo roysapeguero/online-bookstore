@@ -222,3 +222,113 @@ button {
   color: #f0ede9;
 }
 
+/* Returns Page */
+
+.return-search {
+  background-color: #29292b;
+  color: #f0ede9;
+  border: 1px solid #555;
+}
+
+.return-search .form-control {
+  background-color: #f0ede9;
+  color: #19191a;
+  border: 1px solid #aaa;
+}
+
+.return-search .form-control:focus {
+  border-color: #777;
+  box-shadow: 0 0 5px #aaa;
+}
+
+.return-product {
+  background-color: #19191a;
+  color: #f0ede9;
+  border: 1px solid #555;
+}
+
+.return-product p {
+  color: #cccac7;
+}
+
+.return-cover {
+  width: 120px;
+  height: 165px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#returnForm {
+  background-color: #29292b;
+  color: #f0ede9;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+#returnForm .form-control,
+#returnForm .form-select {
+  background-color: #f0ede9;
+  color: #19191a;
+  border: 1px solid #aaa;
+}
+
+#returnForm .form-control:focus,
+#returnForm .form-select:focus {
+  border-color: #777;
+  box-shadow: 0 0 5px #aaa;
+}
+
+#returnForm .form-check-input {
+  cursor: pointer;
+}
+
+#returnMessage {
+  color: #f0ede9;
+}
+
+#searchMessage {
+  color: #f0ede9;
+}
+
+/* Selected Return Product */
+
+.selected-product {
+  background-color: #19191a;
+  color: #f0ede9;
+  border: 1px solid #555;
+  min-height: 55px;
+}
+
+.selected-product p {
+  color: #cccac7;
+}
+
+/* Added Responsive Style, mostly for return form, will be expanded */
+
+
+@media (max-width: 768px) {
+
+  body {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav .nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #returnForm {
+    padding: 20px;
+  }
+
+  .return-cover {
+    margin-bottom: 15px;
+  }
+
+}
