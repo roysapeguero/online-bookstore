@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="index.css" />
+  <title>The Book Nook | Returns</title>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <h1>The Book Nook</h1>
+
+      <ul class="nav nav-tabs justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="books.html">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signup.html">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.html">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="finalize.html">Billing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="returns.html">Returns</a>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container-fluid py-5">
+
+    <!-- Page Heading -->
+    <section class="text-center mb-5">
+      <h2>Product Returns</h2>
+      <p>Need to return a book? No problem! Fill out the form below.</p>
+    </section>
+
+    <div class="container">
+
+      <!-- Product Search, pull from book submissions? -->
+      <section class="mb-5">
+
+        <h3 class="mb-3">Find Your Order</h3>
+
+        <div class="return-search p-4 rounded">
+
+          <label for="productSearch" class="form-label">
+            Search for your Order by Book Title
+          </label>
+
+          <input type="text" class="form-control" id="productSearch" placeholder="Enter a book title..." />
+
+          <button type="button" class="btn btn-custom mt-3" id="searchButton">
+            Search Books
+          </button>
+
+          <div id="searchResults" class="mt-4">
+
+            <!-- Example Product, needs js/json implementation -->
+            <div class="return-product p-3 rounded mb-3">
+
+              <div class="row g-3">
+
+                <div class="col-md-3 text-center">
+                  <img
+                    src="book-cover.jpg"
+                    alt="book1"
+                    class="return-cover"
+                  />
+                </div>
+                <div class="col-md-9">
+                  <h4>Book Title</h4>
+                  <p>Product ID: BOOK001</p>
+                  <p>Price: $0.00</p>
+
+                  <button type="button" class="btn btn-custom select-return" data-id="BOOK001">
+                    Select
+                  </button>
+                </div>
+
+                <div class="col-md-3 text-center">
+                  <img
+                    src="book-cover.jpg"
+                    alt="book2"
+                    class="return-cover"
+                  />
+                </div>
+                <div class="col-md-9">
+                  <h4>Book Title</h4>
+                  <p>Product ID: BOOK002</p>
+                  <p>Price: $0.00</p>
+
+                  <button type="button" class="btn btn-custom select-return" data-id="BOOK002">
+                    Select
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p id="searchMessage" class="mt-3"></p>
+
+        </div>
+      </section>
+
+      <!-- Return Form -->
+      <section>
+
+        <h3 class="mb-4">Return Details</h3>
+
+        <form id="returnForm" novalidate>
+
+<!-- Selected Product, prepped for js/json -->
+<div class="mb-4">
+
+  <label class="form-label">
+    Selected Product
+  </label>
+
+  <div id="selectedProduct" class="selected-product p-3 rounded">
+    <p class="mb-0">No book selected yet.</p>
+  </div>
+
+  <input type="hidden" id="selectedProductId" name="selectedProductId" required />
+
+</div>
+
+<!-- Return Reason -->
+          <div class="mb-3">
+
+            <label for="returnReason" class="form-label">
+              Reason for Return
+            </label>
+
+            <select class="form-select" id="returnReason" name="returnReason" required>
+
+              <option value="">Choose a reason</option>
+              <option value="Damaged">Book arrived damaged</option>
+              <option value="Wrong Item">Wrong book received</option>
+              <option value="Unwanted">No longer wanted</option>
+              <option value="Other">Other</option>
+
+            </select>
+
+            <div class="invalid-feedback">
+              Please select a reason for your return.
+            </div>
+
+          </div>
+
+          <!-- Product Condition -->
+          <div class="mb-3">
+
+            <label for="productCondition" class="form-label">
+              Product Condition
+            </label>
+
+            <select class="form-select" id="productCondition" name="productCondition" required>
+
+              <option value="">Choose product condition</option>
+              <option value="New">New / Unopened</option>
+              <option value="Good">Good Condition</option>
+              <option value="Poor">Poor Condition</option>
+              <option value="Damaged">Damaged</option>
+
+            </select>
+
+            <div class="invalid-feedback">
+              Please select the condition of the book.
+            </div>
+
+          </div>
+
+          <!-- Additional Comments -->
+          <div class="mb-4">
+
+            <label for="returnNotes" class="form-label">
+              Additional Comments (Optional)
+            </label>
+
+            <textarea class="form-control" id="returnNotes" name="returnNotes" rows="4"
+              placeholder="Provide any additional information...">
+            </textarea>
+
+          </div>
+
+          <!-- Confirmation -->
+          <div class="form-check mb-4">
+
+            <input class="form-check-input" type="checkbox" id="returnConfirm" name="returnConfirm" required />
+
+            <label class="form-check-label" for="returnConfirm">
+              I confirm that the return information is correct.
+            </label>
+
+            <div class="invalid-feedback">
+              Please confirm your return information.
+            </div>
+
+          </div>
+
+          <!-- Buttons -->
+          <div class="text-center">
+
+            <button type="submit" class="btn btn-custom">
+              Submit Return
+            </button>
+
+            <a href="index.html" class="btn btn-custom">
+              Return to Store
+            </a>
+
+          </div>
+
+        </form>
+
+        <!-- Submission Message? -->
+        <div id="returnMessage" class="mt-4 text-center" style="display: none;">
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  
+   <footer>
+    <h3 alt="nook">The Book Nook</h3>
+    <p>IST 256 Group Project</p>
+    <p>
+      Created by: Jenna Eberly, Roysa Peguero Martinez, and Anas Mohamed
+      Abdelgadir
+    </p>
+  </footer>
+ <!-- JS stuff, added mock returns in case you make one -->
+  <script src="returns.js"></script>
+<script src="books.js"></script>
+</body>
+
+</html>
