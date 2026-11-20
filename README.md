@@ -7,7 +7,7 @@
 - Added error and success messages for form submissions.
 
 ### Jenna - Bootstrap and CSS
-
+- Created the HTML structure for various pages.
 - Used Bootstrap and CSS to style the website.
 - Worked on the layout, navigation bar, colors and overall design.
 - Helped maintain consistent styling across the pages.
