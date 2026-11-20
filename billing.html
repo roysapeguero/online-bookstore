@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous" />
+
+  <title>The Book Nook | Billing Information</title>
+
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+
+  <!-- Navigation -->
+  <header>
+ <nav>
+      <h1>The Book Nook</h1>
+
+      <ul class="nav nav-tabs justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="books.html">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="signup.html">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.html">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="finalize.html">Finalization</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="returns.html">Returns</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+    </nav>
+  </header>
+
+  <main class="container-fluid py-5">
+
+    <!-- Page Heading -->
+    <section class="text-center mb-5">
+      <h2>Billing Information</h2>
+      <p>Please provide your billing and payment information.</p>
+    </section>
+
+    <div class="container">
+
+      <!-- Order Summary -->
+      <section class="mb-5">
+
+        <h3 class="mb-3">Order Summary</h3>
+
+        <div id="orderSummary" class="p-4 rounded border">
+
+          <h5>Items in Your Cart</h5>
+
+          <div id="orderItems">
+            <p>Your books will appear here.</p>
+          </div>
+
+          <hr />
+
+          <div class="d-flex justify-content-between mb-2">
+            <span>Subtotal:</span>
+            <span id="orderSubtotal">$0.00</span>
+          </div>
+
+          <h5 class="mt-4">Shipping Details</h5>
+
+          <div class="d-flex justify-content-between mb-2">
+            <span>Delivery Method:</span>
+            <span id="shippingMethod">Not selected</span>
+          </div>
+
+          <div class="d-flex justify-content-between mb-2">
+            <span>Shipping Cost:</span>
+            <span id="shippingCost">$0.00</span>
+          </div>
+
+          <hr />
+
+          <div class="d-flex justify-content-between">
+            <h5>Order Total:</h5>
+            <h5 id="orderTotal">$0.00</h5>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Billing -->
+      <section>
+
+        <h3 class="mb-4">Billing Address</h3>
+
+        <form id="billingForm" novalidate>
+          <div class="form-check mb-4">
+
+            <input class="form-check-input" type="checkbox"
+              id="sameAddress" checked />
+
+            <label class="form-check-label" for="sameAddress">
+              Billing address is the same as shipping address.
+            </label>
+
+          </div>
+
+          <div id="billingAddressFields" style="display: none;">
+
+            <div class="row mb-3">
+
+              <div class="col-md-6">
+                <label for="billingFirstName" class="form-label">
+                  First Name
+                </label>
+
+                <input type="text" class="form-control"
+                  id="billingFirstName" required />
+
+                <div class="invalid-feedback">
+                  Please enter your first name.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="billingLastName" class="form-label">
+                  Last Name
+                </label>
+
+                <input type="text" class="form-control"
+                  id="billingLastName" required />
+
+                <div class="invalid-feedback">
+                  Please enter your last name.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="mb-3">
+              <label for="billingAddress" class="form-label">
+                Street Address
+              </label>
+
+              <input type="text" class="form-control"
+                id="billingAddress" required />
+
+              <div class="invalid-feedback">
+                Please enter your billing address.
+              </div>
+            </div>
+
+            <div class="row mb-3">
+
+              <div class="col-md-5">
+                <label for="billingCity" class="form-label">
+                  City
+                </label>
+
+                <input type="text" class="form-control"
+                  id="billingCity" required />
+
+                <div class="invalid-feedback">
+                  Please enter your city.
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="billingState" class="form-label">
+                  State
+                </label>
+
+                <input type="text" class="form-control"
+                  id="billingState" required />
+
+                <div class="invalid-feedback">
+                  Please enter your state.
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="billingZip" class="form-label">
+                  ZIP Code
+                </label>
+
+                <input type="text" class="form-control"
+                  id="billingZip" pattern="[0-9]{5}"
+                  maxlength="5" required />
+
+                <div class="invalid-feedback">
+                  Please enter a valid 5-digit ZIP code.
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Payment Method (needs JavaScript)-->
+          <h4 class="mt-5 mb-3">Payment Information</h4>
+
+          <div class="mb-3">
+
+            <label for="payment" class="form-label">
+              Payment Method
+            </label>
+
+            <select class="form-select" id="payment"
+              name="payment" required>
+
+              <option value="">Choose a payment method</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Debit Card">Debit Card</option>
+              <option value="Gift Card">Gift Card</option>
+
+            </select>
+
+            <div class="invalid-feedback">
+              Please select a payment method.
+            </div>
+
+          </div>
+
+          <!-- Credit/Debit Card Details -->
+          <div id="cardDetails">
+
+            <div class="mb-3">
+              <label for="cardName" class="form-label">
+                Name on Card
+              </label>
+
+              <input type="text" class="form-control"
+                id="cardName" autocomplete="cc-name" required />
+
+              <div class="invalid-feedback">
+                Please enter the name on your card.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="cardNumber" class="form-label">
+                Card Number
+              </label>
+
+              <input type="text" class="form-control"
+                id="cardNumber" name="cardNumber"
+                placeholder="1234 5678 9012 3456"
+                inputmode="numeric" maxlength="19"
+                autocomplete="cc-number" required />
+
+              <div class="invalid-feedback">
+                Please enter a valid card number.
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label for="expirationDate" class="form-label">
+                  Expiration Date
+                </label>
+
+                <input type="text" class="form-control"
+                  id="expirationDate" placeholder="MM/YY"
+                  maxlength="5" autocomplete="cc-exp" required />
+
+                <div class="invalid-feedback">
+                  Please enter an expiration date.
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="securityCode" class="form-label">
+                  Security Code (CVV)
+                </label>
+
+                <input type="password" class="form-control"
+                  id="securityCode" placeholder="123"
+                  inputmode="numeric" maxlength="4"
+                  autocomplete="cc-csc" required />
+
+                <div class="invalid-feedback">
+                  Please enter your security code.
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+   
+          <div id="giftCardDetails" class="mb-3" style="display: none;">
+
+            <label for="giftCardNumber" class="form-label">
+              Gift Card Number
+            </label>
+
+            <input type="text" class="form-control"
+              id="giftCardNumber" />
+
+          </div>
+
+          <!-- Order Confirmation -->
+          <h4 class="mt-5 mb-3">Order Confirmation</h4>
+
+          <div class="form-check mb-4">
+
+            <input class="form-check-input" type="checkbox"
+              id="confirm" required />
+
+            <label class="form-check-label" for="confirm">
+              I confirm that my billing and payment information is correct.
+            </label>
+
+            <div class="invalid-feedback">
+              Please confirm your information.
+            </div>
+
+          </div>
+
+          <div class="text-center">
+
+            <a href="finalize.html" class="btn btn-custom">
+              Back to Shipping
+            </a>
+
+            <button type="submit" class="btn btn-custom">
+              Continue to Order Review
+            </button>
+
+          </div>
+
+        </form>
+
+        <div id="formMessage" class="mt-4 text-center"
+          style="display: none;">
+          Billing information saved successfully!
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+<footer>
+    <h3 alt="nook">The Book Nook</h3>
+    <p>IST 256 Group Project</p>
+    <p>
+      Created by: Jenna Eberly, Roysa Peguero Martinez, and Anas Mohamed
+      Abdelgadir
+    </p>
+  </footer>
+
+
+</body>
+</html>
